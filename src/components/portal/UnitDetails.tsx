@@ -1,5 +1,5 @@
 import { UnitData } from "@/data/unitData";
-import { Server, Hash } from "lucide-react";
+import { Server, Hash, CheckCircle2 } from "lucide-react";
 
 interface UnitDetailsProps {
   unit: UnitData;
@@ -8,28 +8,31 @@ interface UnitDetailsProps {
 export function UnitDetails({ unit }: UnitDetailsProps) {
   return (
     <div className="space-y-4 animate-fade-in">
-      <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-        Unit Details
-      </h3>
+      <div className="flex items-center gap-2">
+        <CheckCircle2 className="h-5 w-5 text-success" />
+        <h3 className="text-sm font-bold uppercase tracking-wider text-success">
+          Unit Found
+        </h3>
+      </div>
       
-      <div className="grid gap-3 sm:grid-cols-2">
-        <div className="flex items-center gap-3 rounded-lg border border-border/50 bg-muted/30 p-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-            <Hash className="h-5 w-5" />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="group flex items-center gap-4 rounded-xl border-2 border-border bg-card p-5 transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover-lift card-shine">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-primary text-primary-foreground shadow-lg">
+            <Hash className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-xs text-muted-foreground">Serial Number</p>
-            <p className="font-mono text-sm font-semibold text-foreground">{unit.serial}</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Serial Number</p>
+            <p className="font-mono text-lg font-bold text-foreground">{unit.serial}</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3 rounded-lg border border-border/50 bg-muted/30 p-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-            <Server className="h-5 w-5" />
+        <div className="group flex items-center gap-4 rounded-xl border-2 border-border bg-card p-5 transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover-lift card-shine">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-hero text-primary-foreground shadow-lg">
+            <Server className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-xs text-muted-foreground">Model</p>
-            <p className="text-sm font-semibold text-foreground">{unit.model}</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Model</p>
+            <p className="text-lg font-bold text-foreground">{unit.model}</p>
           </div>
         </div>
       </div>

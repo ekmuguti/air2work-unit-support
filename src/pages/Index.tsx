@@ -10,6 +10,7 @@ import { BrandStrip } from "@/components/portal/BrandStrip";
 import { NotFoundState } from "@/components/portal/NotFoundState";
 import { EmptyState } from "@/components/portal/EmptyState";
 import { findUnitBySerial, normalizeSerial, UnitData } from "@/data/unitData";
+import { Wrench } from "lucide-react";
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -56,54 +57,76 @@ const Index = () => {
     setSerialInput(value);
   };
 
+  const handleRetry = () => {
+    setSerialInput("");
+    setCurrentUnit(null);
+    setSearchedSerial(null);
+    setHasSearched(false);
+    setSearchParams({}, { replace: true });
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
 
       <main className="flex-1 py-6 md:py-10">
-        <div className="container max-w-4xl">
+        <div className="container max-w-5xl space-y-8">
           {/* Main Card */}
-          <div className="rounded-2xl border border-border/50 bg-gradient-card p-6 shadow-xl md:p-8">
-            {/* Card Header */}
-            <div className="mb-6 text-center">
-              <h2 className="text-2xl font-bold text-foreground md:text-3xl">
-                {currentUnit ? currentUnit.model : "E-Compressor 800L"}
-              </h2>
-              <p className="mt-1 text-muted-foreground">
-                Support tools and documentation for this unit.
-              </p>
-            </div>
+          <div className="rounded-2xl border-2 border-border bg-gradient-card p-6 shadow-2xl md:p-8 relative overflow-hidden noise-overlay">
+            {/* Decorative elements */}
+            <div className="absolute -top-32 -right-32 h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
+            <div className="absolute -bottom-32 -left-32 h-64 w-64 rounded-full bg-accent/5 blur-3xl" />
+            
+            <div className="relative">
+              {/* Card Header */}
+              <div className="mb-8 text-center">
+                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-4">
+                  <Wrench className="h-4 w-4" />
+                  Technician Portal
+                </div>
+                <h2 className="text-3xl font-bold text-foreground md:text-4xl">
+                  {currentUnit ? (
+                    <span className="text-gradient-hero">{currentUnit.model}</span>
+                  ) : (
+                    "E-Compressor 800L"
+                  )}
+                </h2>
+                <p className="mt-2 text-muted-foreground">
+                  Support tools and documentation for E-Compressor units.
+                </p>
+              </div>
 
-            {/* Serial Input */}
-            <div className="mb-8 rounded-xl border border-border/30 bg-muted/20 p-4">
-              <SerialInput
-                value={serialInput}
-                onChange={handleSerialChange}
-                onSubmit={handleSubmit}
-              />
-            </div>
+              {/* Serial Input */}
+              <div className="mb-8 rounded-xl border-2 border-border/50 bg-card/50 p-5 backdrop-blur-sm">
+                <SerialInput
+                  value={serialInput}
+                  onChange={handleSerialChange}
+                  onSubmit={handleSubmit}
+                />
+              </div>
 
-            {/* Content Area */}
-            <div className="space-y-8">
-              {!hasSearched && <EmptyState />}
-              
-              {hasSearched && !currentUnit && searchedSerial && (
-                <NotFoundState serial={searchedSerial} />
-              )}
+              {/* Content Area */}
+              <div className="space-y-8">
+                {!hasSearched && <EmptyState />}
+                
+                {hasSearched && !currentUnit && searchedSerial && (
+                  <NotFoundState serial={searchedSerial} onRetry={handleRetry} />
+                )}
 
-              {currentUnit && (
-                <>
-                  <UnitDetails unit={currentUnit} />
-                  <div className="border-t border-border/30 pt-6">
-                    <ResourcesSection unit={currentUnit} />
-                  </div>
-                  <div className="border-t border-border/30 pt-6">
-                    <TrainingVideosSection unit={currentUnit} />
-                  </div>
-                </>
-              )}
+                {currentUnit && (
+                  <>
+                    <UnitDetails unit={currentUnit} />
+                    <div className="border-t-2 border-border/30 pt-8">
+                      <ResourcesSection unit={currentUnit} />
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
+
+          {/* Training Videos - Always visible */}
+          <TrainingVideosSection />
 
           {/* Brand Strip */}
           <BrandStrip />
