@@ -18,6 +18,7 @@ const Index = () => {
   const [currentUnit, setCurrentUnit] = useState<UnitData | null>(null);
   const [searchedSerial, setSearchedSerial] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Read serial from URL on mount
   useEffect(() => {
@@ -29,7 +30,7 @@ const Index = () => {
     }
   }, []);
 
-  const handleLookup = (serial?: string) => {
+  const handleLookup = async (serial?: string) => {
     const searchSerial = serial || serialInput;
     if (!searchSerial.trim()) {
       setHasSearched(false);
@@ -38,19 +39,25 @@ const Index = () => {
       return;
     }
 
+    setIsLoading(true);
+    
+    // Simulate loading for better UX feedback
+    await new Promise(resolve => setTimeout(resolve, 400));
+
     const normalized = normalizeSerial(searchSerial);
     const unit = findUnitBySerial(normalized);
 
     setSearchedSerial(normalized);
     setCurrentUnit(unit || null);
     setHasSearched(true);
+    setIsLoading(false);
 
     // Update URL with the searched serial
     setSearchParams({ serial: normalized }, { replace: true });
   };
 
-  const handleSubmit = () => {
-    handleLookup();
+  const handleSubmit = (value?: string) => {
+    handleLookup(value);
   };
 
   const handleSerialChange = (value: string) => {
@@ -102,18 +109,38 @@ const Index = () => {
                   value={serialInput}
                   onChange={handleSerialChange}
                   onSubmit={handleSubmit}
+                  isLoading={isLoading}
                 />
               </div>
 
               {/* Content Area */}
               <div className="space-y-8">
-                {!hasSearched && <EmptyState />}
+                {!hasSearched && !isLoading && <EmptyState />}
                 
-                {hasSearched && !currentUnit && searchedSerial && (
+                {isLoading && (
+                  <div className="space-y-6 animate-pulse">
+                    <div className="rounded-xl border-2 border-border/50 bg-card/50 p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="h-10 w-10 rounded-lg bg-muted" />
+                        <div className="space-y-2">
+                          <div className="h-4 w-32 rounded bg-muted" />
+                          <div className="h-3 w-24 rounded bg-muted" />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="h-16 rounded-lg bg-muted" />
+                        <div className="h-16 rounded-lg bg-muted" />
+                      </div>
+                    </div>
+                    <div className="h-32 rounded-xl bg-muted/50" />
+                  </div>
+                )}
+                
+                {!isLoading && hasSearched && !currentUnit && searchedSerial && (
                   <NotFoundState serial={searchedSerial} onRetry={handleRetry} />
                 )}
 
-                {currentUnit && (
+                {!isLoading && currentUnit && (
                   <>
                     <UnitDetails unit={currentUnit} />
                     <div className="border-t-2 border-border/30 pt-8">
