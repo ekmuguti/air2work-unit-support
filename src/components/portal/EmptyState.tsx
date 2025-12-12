@@ -1,6 +1,9 @@
 import { ScanLine, QrCode } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function EmptyState() {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
       <div className="relative mb-6">
@@ -15,11 +18,13 @@ export function EmptyState() {
         </div>
       </div>
       <h3 className="mb-2 text-xl font-bold text-foreground">
-        Enter a Unit Serial Number
+        {t("empty.title")}
       </h3>
       <p className="max-w-sm text-sm text-muted-foreground">
-        Select a unit from the dropdown or enter the serial number manually. 
-        You can also scan the QR code on the unit.
+        {t("empty.subtitle")}
+      </p>
+      <p className="mt-2 text-xs text-muted-foreground/70">
+        {t("empty.hint")}
       </p>
     </div>
   );

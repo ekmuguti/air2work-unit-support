@@ -1,28 +1,27 @@
 import { Play, Video, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { UNIT_DATA } from "@/data/unitData";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function TrainingVideosSection() {
+  const { t } = useLanguage();
+  
   // Use the first unit's video URLs as they're shared across all units
   const defaultUnit = UNIT_DATA[0];
   
   const videos = [
     { 
-      label: "Start-up Procedure", 
+      label: t("videos.startup"), 
       url: defaultUnit?.startUpVideoUrl || "#",
-      description: "Learn the proper start-up sequence",
       color: "from-emerald-500 to-teal-600"
     },
     { 
-      label: "Alarm Procedure", 
+      label: t("videos.alarm"), 
       url: defaultUnit?.alarmVideoUrl || "#",
-      description: "Handle alarms safely and effectively",
       color: "from-amber-500 to-orange-600"
     },
     { 
-      label: "Shutdown Procedure", 
+      label: t("videos.shutdown"), 
       url: defaultUnit?.shutdownVideoUrl || "#",
-      description: "Correct shutdown process",
       color: "from-rose-500 to-pink-600"
     },
   ];
@@ -34,10 +33,10 @@ export function TrainingVideosSection() {
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-hero text-primary-foreground">
             <Video className="h-5 w-5" />
           </div>
-          <h3 className="text-xl font-bold text-foreground">Training Videos</h3>
+          <h3 className="text-xl font-bold text-foreground">{t("videos.title")}</h3>
         </div>
         <p className="text-sm text-muted-foreground">
-          Watch on-site training videos for E-Compressor units. Essential viewing for all technicians.
+          {t("videos.subtitle")}
         </p>
       </div>
 
@@ -64,7 +63,7 @@ export function TrainingVideosSection() {
               {video.label}
             </h4>
             <p className="relative text-xs text-muted-foreground">
-              {video.description}
+              {t("videos.watch")}
             </p>
             
             {/* External link indicator */}

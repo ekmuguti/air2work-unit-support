@@ -1,17 +1,20 @@
 import { UnitData } from "@/data/unitData";
 import { Server, Hash, CheckCircle2 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface UnitDetailsProps {
   unit: UnitData;
 }
 
 export function UnitDetails({ unit }: UnitDetailsProps) {
+  const { t } = useLanguage();
+
   return (
     <div className="space-y-4 animate-fade-in">
       <div className="flex items-center gap-2">
         <CheckCircle2 className="h-5 w-5 text-success" />
         <h3 className="text-sm font-bold uppercase tracking-wider text-success">
-          Unit Found
+          {t("unit.details")}
         </h3>
       </div>
       
@@ -21,7 +24,7 @@ export function UnitDetails({ unit }: UnitDetailsProps) {
             <Hash className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Serial Number</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{t("unit.serial")}</p>
             <p className="font-mono text-lg font-bold text-foreground">{unit.serial}</p>
           </div>
         </div>
@@ -31,7 +34,7 @@ export function UnitDetails({ unit }: UnitDetailsProps) {
             <Server className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Model</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{t("unit.model")}</p>
             <p className="text-lg font-bold text-foreground">{unit.model}</p>
           </div>
         </div>

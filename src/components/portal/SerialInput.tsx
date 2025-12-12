@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Search, Sparkles, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAllSerials } from "@/data/unitData";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SerialInputProps {
   value: string;
@@ -12,7 +13,21 @@ interface SerialInputProps {
 
 export function SerialInput({ value, onChange, onSubmit, isLoading = false }: SerialInputProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const serials = getAllSerials();
+  const { t } = useLanguage();
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !isLoading) {
@@ -23,8 +38,16 @@ export function SerialInput({ value, onChange, onSubmit, isLoading = false }: Se
   const handleSelectSerial = (serial: string) => {
     onChange(serial);
     setIsDropdownOpen(false);
-    // Auto-submit when selecting from dropdown
-    onSubmit(serial);
+    // Use setTimeout to ensure state update before submit
+    setTimeout(() => {
+      onSubmit(serial);
+    }, 0);
+  };
+
+  const handleDropdownToggle = () => {
+    if (!isLoading) {
+      setIsDropdownOpen(!isDropdownOpen);
+    }
   };
 
   return (
@@ -32,27 +55,27 @@ export function SerialInput({ value, onChange, onSubmit, isLoading = false }: Se
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-primary" />
         <label className="text-sm font-semibold text-foreground">
-          Enter Serial Number
+          {t("serial.label")}
         </label>
       </div>
       
       <div className="flex flex-col gap-3 sm:flex-row">
         {/* Dropdown selector */}
-        <div className="relative flex-1">
+        <div className="relative flex-1" ref={dropdownRef}>
           <button
             type="button"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            onClick={handleDropdownToggle}
             disabled={isLoading}
             className="flex h-12 w-full items-center justify-between rounded-xl border-2 border-border bg-card px-4 text-left text-foreground transition-all duration-300 hover:border-primary/50 hover:shadow-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <span className={value ? "font-medium text-foreground" : "text-muted-foreground"}>
-              {value || "Select a unit..."}
+              {value || t("serial.select")}
             </span>
             <ChevronDown className={`h-5 w-5 text-muted-foreground transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
           </button>
 
           {isDropdownOpen && (
-            <div className="absolute z-50 mt-2 w-full rounded-xl border-2 border-border bg-card shadow-xl animate-fade-in-scale overflow-hidden">
+            <div className="absolute z-50 mt-2 w-full rounded-xl border-2 border-border bg-card shadow-xl animate-fade-in overflow-hidden">
               {serials.map((serial, index) => (
                 <button
                   key={serial}
@@ -78,7 +101,7 @@ export function SerialInput({ value, onChange, onSubmit, isLoading = false }: Se
             onChange={(e) => onChange(e.target.value)}
             onKeyDown={handleKeyDown}
             disabled={isLoading}
-            placeholder="e.g. 63KZ-14600"
+            placeholder={t("serial.placeholder")}
             className="h-12 w-full rounded-xl border-2 border-border bg-card px-4 pr-10 font-mono text-foreground placeholder:text-muted-foreground transition-all duration-300 hover:border-primary/50 hover:shadow-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
           />
           <Search className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
@@ -93,10 +116,10 @@ export function SerialInput({ value, onChange, onSubmit, isLoading = false }: Se
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Loading
+              {t("serial.loading")}
             </>
           ) : (
-            "Search"
+            t("serial.search")
           )}
         </Button>
       </div>

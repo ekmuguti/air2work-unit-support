@@ -1,7 +1,11 @@
 import { Zap } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Header() {
+  const { t } = useLanguage();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 glass">
       <div className="container flex h-16 items-center justify-between">
@@ -19,16 +23,13 @@ export function Header() {
 
         {/* Center: Title */}
         <h1 className="text-lg font-bold text-foreground md:text-xl">
-          <span className="hidden sm:inline">Unit </span>Support Portal
+          {t("header.title")}
         </h1>
 
-        {/* Right: Theme toggle + Company logo placeholder */}
-        <div className="flex items-center gap-3">
+        {/* Right: Theme toggle + Language toggle */}
+        <div className="flex items-center gap-2">
           <ThemeToggle />
-          {/* TODO: Replace with actual company logo */}
-          <div className="hidden h-9 items-center justify-center rounded-lg border border-border/50 bg-muted/50 px-3 sm:flex">
-            <span className="text-xs text-muted-foreground">Logo</span>
-          </div>
+          <LanguageToggle />
         </div>
       </div>
     </header>

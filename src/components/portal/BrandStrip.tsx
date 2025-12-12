@@ -1,11 +1,13 @@
 import { Zap, Volume2, Headphones, Shield } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function BrandStrip() {
+  const { t } = useLanguage();
+
   const features = [
-    { icon: Zap, label: "Electric" },
-    { icon: Volume2, label: "Low noise" },
-    { icon: Shield, label: "Safety first" },
-    { icon: Headphones, label: "24/7 support" },
+    { icon: Zap, labelKey: "brand.electric" },
+    { icon: Volume2, labelKey: "brand.quiet" },
+    { icon: Headphones, labelKey: "brand.support" },
   ];
 
   return (
@@ -18,23 +20,23 @@ export function BrandStrip() {
         {/* Left: Brand name */}
         <div className="text-center md:text-left">
           <h4 className="text-2xl font-bold text-gradient-hero">
-            E Innovation E-Compressor
+            {t("brand.title")}
           </h4>
           <p className="mt-1 text-muted-foreground">
-            Safe reliable breathing air on-site.
+            {t("brand.subtitle")}
           </p>
         </div>
 
         {/* Right: Feature pills */}
         <div className="flex flex-wrap justify-center gap-3">
-          {features.map(({ icon: Icon, label }, index) => (
+          {features.map(({ icon: Icon, labelKey }, index) => (
             <div
-              key={label}
+              key={labelKey}
               className="flex items-center gap-2 rounded-full border-2 border-primary/30 bg-primary/10 px-4 py-2.5 text-sm font-semibold text-primary transition-all duration-300 hover:border-primary/50 hover:bg-primary/20 hover:shadow-lg animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <Icon className="h-4 w-4" />
-              {label}
+              {t(labelKey)}
             </div>
           ))}
         </div>
