@@ -18,18 +18,12 @@ export const UNIT_DATA: UnitData[] = [
   {
     serial: "63KZ-14600",
     model: "E-Compressor 800L",
-    // TODO: Replace with real manual URL for 63KZ-14600
     operationsManualUrl: "{{OPERATIONS_MANUAL_URL_14600}}",
-    // TODO: Replace with real service manual URL for 63KZ-14600
     serviceManualUrl: "{{SERVICE_MANUAL_URL_14600}}",
-    // TODO: Replace with real incident form URL
     incidentFormUrl: "{{INCIDENT_FORM_URL}}",
-    // TODO: Replace with real YouTube start-up video URL
-    startUpVideoUrl: "{{YOUTUBE_STARTUP_URL}}",
-    // TODO: Replace with real YouTube alarm video URL
-    alarmVideoUrl: "{{YOUTUBE_ALARM_URL}}",
-    // TODO: Replace with real YouTube shutdown video URL
-    shutdownVideoUrl: "{{YOUTUBE_SHUTDOWN_URL}}",
+    startUpVideoUrl: "https://youtu.be/Vn7Zdq4yWTA",
+    alarmVideoUrl: "https://youtu.be/fwDWhOeyHmg",
+    shutdownVideoUrl: "https://youtu.be/wYPIRiEjVtk",
   },
   {
     serial: "63KZ-14700",
@@ -37,9 +31,9 @@ export const UNIT_DATA: UnitData[] = [
     operationsManualUrl: "{{OPERATIONS_MANUAL_URL_14700}}",
     serviceManualUrl: "{{SERVICE_MANUAL_URL_14700}}",
     incidentFormUrl: "{{INCIDENT_FORM_URL}}",
-    startUpVideoUrl: "{{YOUTUBE_STARTUP_URL}}",
-    alarmVideoUrl: "{{YOUTUBE_ALARM_URL}}",
-    shutdownVideoUrl: "{{YOUTUBE_SHUTDOWN_URL}}",
+    startUpVideoUrl: "https://youtu.be/Vn7Zdq4yWTA",
+    alarmVideoUrl: "https://youtu.be/fwDWhOeyHmg",
+    shutdownVideoUrl: "https://youtu.be/wYPIRiEjVtk",
   },
   {
     serial: "63KZ-14800",
@@ -47,9 +41,9 @@ export const UNIT_DATA: UnitData[] = [
     operationsManualUrl: "{{OPERATIONS_MANUAL_URL_14800}}",
     serviceManualUrl: "{{SERVICE_MANUAL_URL_14800}}",
     incidentFormUrl: "{{INCIDENT_FORM_URL}}",
-    startUpVideoUrl: "{{YOUTUBE_STARTUP_URL}}",
-    alarmVideoUrl: "{{YOUTUBE_ALARM_URL}}",
-    shutdownVideoUrl: "{{YOUTUBE_SHUTDOWN_URL}}",
+    startUpVideoUrl: "https://youtu.be/Vn7Zdq4yWTA",
+    alarmVideoUrl: "https://youtu.be/fwDWhOeyHmg",
+    shutdownVideoUrl: "https://youtu.be/wYPIRiEjVtk",
   },
   {
     serial: "63KZ-14900",
@@ -57,9 +51,9 @@ export const UNIT_DATA: UnitData[] = [
     operationsManualUrl: "{{OPERATIONS_MANUAL_URL_14900}}",
     serviceManualUrl: "{{SERVICE_MANUAL_URL_14900}}",
     incidentFormUrl: "{{INCIDENT_FORM_URL}}",
-    startUpVideoUrl: "{{YOUTUBE_STARTUP_URL}}",
-    alarmVideoUrl: "{{YOUTUBE_ALARM_URL}}",
-    shutdownVideoUrl: "{{YOUTUBE_SHUTDOWN_URL}}",
+    startUpVideoUrl: "https://youtu.be/Vn7Zdq4yWTA",
+    alarmVideoUrl: "https://youtu.be/fwDWhOeyHmg",
+    shutdownVideoUrl: "https://youtu.be/wYPIRiEjVtk",
   },
 ];
 
