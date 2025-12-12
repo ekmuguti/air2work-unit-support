@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export type Language = "en" | "es" | "fr" | "de";
+export type Language = "en" | "es" | "no" | "de";
 
 interface LanguageContextType {
   language: Language;
@@ -120,60 +120,60 @@ const translations: Record<Language, Record<string, string>> = {
     // Footer
     "footer.text": "Soporte E-Compressor • Para uso interno y técnicos en sitio.",
   },
-  fr: {
+  no: {
     // Header
-    "header.title": "Portail d'Assistance",
-    "header.theme": "Thème",
-    "header.language": "Langue",
+    "header.title": "Støtteportal",
+    "header.theme": "Tema",
+    "header.language": "Språk",
     
     // Serial Input
-    "serial.label": "Entrez le Numéro de Série",
-    "serial.placeholder": "ex. 63KZ-14600",
-    "serial.select": "Sélectionnez une unité...",
-    "serial.search": "Rechercher",
-    "serial.loading": "Chargement",
+    "serial.label": "Skriv inn Serienummer",
+    "serial.placeholder": "f.eks. 63KZ-14600",
+    "serial.select": "Velg en enhet...",
+    "serial.search": "Søk",
+    "serial.loading": "Laster",
     
     // Unit Details
-    "unit.details": "Détails de l'Unité",
-    "unit.serial": "Numéro de Série",
-    "unit.model": "Modèle",
-    "unit.subtitle": "Outils et documentation pour les unités E-Compressor.",
-    "unit.badge": "Portail Technicien",
+    "unit.details": "Enhetsdetaljer",
+    "unit.serial": "Serienummer",
+    "unit.model": "Modell",
+    "unit.subtitle": "Støtteverktøy og dokumentasjon for E-Compressor-enheter.",
+    "unit.badge": "Teknikerportal",
     
     // Resources
-    "resources.title": "Ressources",
-    "resources.subtitle": "Accédez à la documentation et signalez les problèmes.",
-    "resources.operations": "Manuel d'Opérations",
-    "resources.service": "Manuel de Service",
-    "resources.incident": "Signaler Incident",
-    "resources.email": "Email Incident",
+    "resources.title": "Ressurser",
+    "resources.subtitle": "Få tilgang til dokumentasjon og rapporter problemer.",
+    "resources.operations": "Driftshåndbok",
+    "resources.service": "Servicehåndbok",
+    "resources.incident": "Rapporter Hendelse",
+    "resources.email": "Send Hendelse",
     
     // Training Videos
-    "videos.title": "Vidéos de Formation",
-    "videos.subtitle": "Regardez les vidéos de formation pour les unités E-Compressor.",
-    "videos.startup": "Procédure de Démarrage",
-    "videos.alarm": "Procédure d'Alarme",
-    "videos.shutdown": "Procédure d'Arrêt",
-    "videos.watch": "Voir la Vidéo",
+    "videos.title": "Opplæringsvideoer",
+    "videos.subtitle": "Se opplæringsvideoer for E-Compressor-enheter.",
+    "videos.startup": "Oppstartsprosedyre",
+    "videos.alarm": "Alarmprosedyre",
+    "videos.shutdown": "Avslutningsprosedyre",
+    "videos.watch": "Se Video",
     
     // States
-    "empty.title": "Prêt à Aider",
-    "empty.subtitle": "Entrez un numéro de série ci-dessus pour accéder à la documentation.",
-    "empty.hint": "Astuce: Vous pouvez sélectionner dans le menu ou taper manuellement",
-    "notfound.title": "Unité Non Reconnue",
-    "notfound.subtitle": "Le numéro de série {serial} n'a pas été trouvé.",
-    "notfound.hint": "Veuillez vérifier le numéro de série et réessayer.",
-    "notfound.retry": "Effacer et Réessayer",
+    "empty.title": "Klar til å Hjelpe",
+    "empty.subtitle": "Skriv inn et serienummer ovenfor for å få tilgang til dokumentasjon.",
+    "empty.hint": "Tips: Du kan velge fra menyen eller skrive manuelt",
+    "notfound.title": "Enhet Ikke Gjenkjent",
+    "notfound.subtitle": "Serienummeret {serial} ble ikke funnet i systemet.",
+    "notfound.hint": "Vennligst sjekk serienummeret og prøv igjen.",
+    "notfound.retry": "Tøm og Prøv Igjen",
     
     // Brand Strip
     "brand.title": "E Innovation E-Compressor",
-    "brand.subtitle": "Air respirable sûr et fiable sur site.",
-    "brand.electric": "Électrique",
-    "brand.quiet": "Faible bruit",
-    "brand.support": "Support location",
+    "brand.subtitle": "Sikker, pålitelig pusteluft på stedet.",
+    "brand.electric": "Elektrisk",
+    "brand.quiet": "Lavt støynivå",
+    "brand.support": "Utleiestøtte",
     
     // Footer
-    "footer.text": "Support E-Compressor • Pour usage interne et techniciens.",
+    "footer.text": "E-Compressor Støtte • For intern bruk og teknikere.",
   },
   de: {
     // Header
@@ -292,6 +292,6 @@ export function useLanguage() {
 export const LANGUAGE_OPTIONS: { code: Language; label: string; flag: string }[] = [
   { code: "en", label: "English", flag: "🇬🇧" },
   { code: "es", label: "Español", flag: "🇪🇸" },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "no", label: "Norsk", flag: "🇳🇴" },
   { code: "de", label: "Deutsch", flag: "🇩🇪" },
 ];
