@@ -11,6 +11,7 @@ import { NotFoundState } from "@/components/portal/NotFoundState";
 import { EmptyState } from "@/components/portal/EmptyState";
 import { findUnitBySerial, normalizeSerial, UnitData } from "@/data/unitData";
 import { Wrench } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,6 +20,7 @@ const Index = () => {
   const [searchedSerial, setSearchedSerial] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useLanguage();
 
   // Read serial from URL on mount
   useEffect(() => {
@@ -52,8 +54,10 @@ const Index = () => {
     setHasSearched(true);
     setIsLoading(false);
 
-    // Update URL with the searched serial
-    setSearchParams({ serial: normalized }, { replace: true });
+    // Update URL with the searched serial, preserving language param
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("serial", normalized);
+    setSearchParams(newParams, { replace: true });
   };
 
   const handleSubmit = (value?: string) => {
@@ -69,7 +73,9 @@ const Index = () => {
     setCurrentUnit(null);
     setSearchedSerial(null);
     setHasSearched(false);
-    setSearchParams({}, { replace: true });
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete("serial");
+    setSearchParams(newParams, { replace: true });
   };
 
   return (
@@ -89,7 +95,7 @@ const Index = () => {
               <div className="mb-8 text-center">
                 <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-4">
                   <Wrench className="h-4 w-4" />
-                  Technician Portal
+                  {t("unit.badge")}
                 </div>
                 <h2 className="text-3xl font-bold text-foreground md:text-4xl">
                   {currentUnit ? (
@@ -99,7 +105,7 @@ const Index = () => {
                   )}
                 </h2>
                 <p className="mt-2 text-muted-foreground">
-                  Support tools and documentation for E-Compressor units.
+                  {t("unit.subtitle")}
                 </p>
               </div>
 
