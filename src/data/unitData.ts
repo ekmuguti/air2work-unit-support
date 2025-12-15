@@ -19,8 +19,8 @@ export const UNIT_DATA: UnitData[] = [
   {
     serial: "63KZ-14600",
     model: "E-Compressor 800L",
-    operationsManualUrl: '${BASE}public/E-Compressor-Operational-Manual.pdf',
-    serviceManualUrl: '${BASE}public/Service-and-manual.pdf',
+    operationsManualUrl: `${BASE}E-Compressor-Operational-Manual.pdf`,
+    serviceManualUrl: `${BASE}Service-and-manual.pdf`,    
     incidentFormUrl: "{{INCIDENT_FORM_URL}}",
     startUpVideoUrl: "https://youtu.be/Vn7Zdq4yWTA",
     alarmVideoUrl: "https://youtu.be/fwDWhOeyHmg",
@@ -29,8 +29,8 @@ export const UNIT_DATA: UnitData[] = [
   {
     serial: "63KZ-14700",
     model: "E-Compressor 800L",
-    operationsManualUrl: '${BASE}public/E-Compressor-Operational-Manual.pdf',
-    serviceManualUrl: '${BASE}public/Service-and-manual.pdf',
+    operationsManualUrl: `${BASE}E-Compressor-Operational-Manual.pdf`,
+    serviceManualUrl: `${BASE}Service-and-manual.pdf`,    
     incidentFormUrl: "{{INCIDENT_FORM_URL}}",
     startUpVideoUrl: "https://youtu.be/Vn7Zdq4yWTA",
     alarmVideoUrl: "https://youtu.be/fwDWhOeyHmg",
@@ -39,8 +39,8 @@ export const UNIT_DATA: UnitData[] = [
   {
     serial: "63KZ-14800",
     model: "E-Compressor 800L",
-    operationsManualUrl: '${BASE}public/E-Compressor-Operational-Manual.pdf',
-    serviceManualUrl: '${BASE}public/Service-and-manual.pdf',
+    operationsManualUrl: `${BASE}E-Compressor-Operational-Manual.pdf`,
+    serviceManualUrl: `${BASE}Service-and-manual.pdf`,    
     incidentFormUrl: "{{INCIDENT_FORM_URL}}",
     startUpVideoUrl: "https://youtu.be/Vn7Zdq4yWTA",
     alarmVideoUrl: "https://youtu.be/fwDWhOeyHmg",
@@ -49,8 +49,8 @@ export const UNIT_DATA: UnitData[] = [
   {
     serial: "63KZ-14900",
     model: "E-Compressor 800L",
-    operationsManualUrl: '${BASE}public/E-Compressor-Operational-Manual.pdf',
-    serviceManualUrl: '${BASE}public/Service-and-manual.pdf',
+    operationsManualUrl: `${BASE}E-Compressor-Operational-Manual.pdf`,
+    serviceManualUrl: `${BASE}Service-and-manual.pdf`,    
     incidentFormUrl: "{{INCIDENT_FORM_URL}}",
     startUpVideoUrl: "https://youtu.be/Vn7Zdq4yWTA",
     alarmVideoUrl: "https://youtu.be/fwDWhOeyHmg",
