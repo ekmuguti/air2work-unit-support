@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export type Language = "en" | "es" | "no" | "de";
+export type Language = "en" | "nl" | "no" | "de";
 
 interface LanguageContextType {
   language: Language;
@@ -65,60 +65,60 @@ const translations: Record<Language, Record<string, string>> = {
     // Footer
     "footer.text": "E-Compressor Support • For internal use & onsite technicians/operators.",
   },
-  es: {
+  nl: {
     // Header
-    "header.title": "Portal de Soporte",
-    "header.theme": "Tema",
-    "header.language": "Idioma",
+    "header.title": "Ondersteuningsportaal",
+    "header.theme": "Thema",
+    "header.language": "Taal",
     
     // Serial Input
-    "serial.label": "Ingrese Número de Serie",
-    "serial.placeholder": "ej. 63KZ-14600",
-    "serial.select": "Seleccione una unidad...",
-    "serial.search": "Buscar",
-    "serial.loading": "Cargando",
+    "serial.label": "Voer Serienummer In",
+    "serial.placeholder": "bijv. 63KZ-14600",
+    "serial.select": "Selecteer een eenheid...",
+    "serial.search": "Zoeken",
+    "serial.loading": "Laden",
     
     // Unit Details
-    "unit.details": "Detalles de la Unidad",
-    "unit.serial": "Número de Serie",
-    "unit.model": "Modelo",
-    "unit.subtitle": "Herramientas y documentación para unidades E-Compressor.",
-    "unit.badge": "Portal Técnico",
+    "unit.details": "Eenheidsdetails",
+    "unit.serial": "Serienummer",
+    "unit.model": "Model",
+    "unit.subtitle": "Ondersteuning en documentatie voor E-Compressor eenheden.",
+    "unit.badge": "Technicusportaal",
     
     // Resources
-    "resources.title": "Recursos",
-    "resources.subtitle": "Acceda a documentación y reporte problemas de esta unidad.",
-    "resources.operations": "Manual de Operaciones",
-    "resources.service": "Manual de Servicio",
-    "resources.incident": "Reportar Incidente",
-    "resources.email": "Email Incidente",
+    "resources.title": "Bronnen",
+    "resources.subtitle": "Toegang tot documentatie en incidenten melden.",
+    "resources.operations": "Bedieningshandleiding",
+    "resources.service": "Servicehandleiding",
+    "resources.incident": "Incident Melden",
+    "resources.email": "E-mail Incident",
     
     // Training Videos
-    "videos.title": "Videos de Capacitación",
-    "videos.subtitle": "Mire videos de capacitación para unidades E-Compressor.",
-    "videos.startup": "Procedimiento de Arranque",
-    "videos.alarm": "Procedimiento de Alarma",
-    "videos.shutdown": "Procedimiento de Apagado",
-    "videos.watch": "Ver Video",
+    "videos.title": "Trainingsvideo's",
+    "videos.subtitle": "Bekijk trainingsvideo's voor E-Compressor eenheden.",
+    "videos.startup": "Opstartprocedure",
+    "videos.alarm": "Alarmprocedure",
+    "videos.shutdown": "Afsluitprocedure",
+    "videos.watch": "Bekijk Video",
     
     // States
-    "empty.title": "Listo para Ayudar",
-    "empty.subtitle": "Ingrese un número de serie arriba para acceder a documentación y recursos.",
-    "empty.hint": "Consejo: Puede seleccionar del menú o escribir manualmente",
-    "notfound.title": "Unidad No Reconocida",
-    "notfound.subtitle": "El número de serie {serial} no se encontró en nuestro sistema.",
-    "notfound.hint": "Por favor verifique el número de serie e intente de nuevo.",
-    "notfound.retry": "Limpiar e Intentar de Nuevo",
+    "empty.title": "Klaar om te Helpen",
+    "empty.subtitle": "Voer een serienummer in om toegang te krijgen tot documentatie.",
+    "empty.hint": "Tip: U kunt selecteren uit het menu of handmatig typen",
+    "notfound.title": "Eenheid Niet Herkend",
+    "notfound.subtitle": "Serienummer {serial} werd niet gevonden in ons systeem.",
+    "notfound.hint": "Controleer het serienummer en probeer opnieuw.",
+    "notfound.retry": "Wissen en Opnieuw Proberen",
     
     // Brand Strip
     "brand.title": "E Innovation E-Compressor",
-    "brand.subtitle": "Aire respirable seguro y confiable en sitio.",
-    "brand.electric": "Eléctrico",
-    "brand.quiet": "Bajo ruido",
-    "brand.support": "Soporte en alquiler",
+    "brand.subtitle": "Veilige, betrouwbare ademlucht op locatie.",
+    "brand.electric": "Elektrisch",
+    "brand.quiet": "Laag geluidsniveau",
+    "brand.support": "Verhuurondersteuning",
     
     // Footer
-    "footer.text": "Soporte E-Compressor • Para uso interno y técnicos en sitio.",
+    "footer.text": "E-Compressor Ondersteuning • Voor intern gebruik en technici.",
   },
   no: {
     // Header
@@ -291,7 +291,7 @@ export function useLanguage() {
 
 export const LANGUAGE_OPTIONS: { code: Language; label: string; flag: string }[] = [
   { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "nl", label: "Nederlands", flag: "🇳🇱" },
   { code: "no", label: "Norsk", flag: "🇳🇴" },
   { code: "de", label: "Deutsch", flag: "🇩🇪" },
 ];
