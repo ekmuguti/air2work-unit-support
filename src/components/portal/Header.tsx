@@ -1,4 +1,3 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import air2workLogo from "@/assets/air2work-logo.png";
@@ -14,7 +13,7 @@ export function Header() {
           <img 
             src={air2workLogo} 
             alt="Air2Work" 
-            className="h-10 w-auto object-contain dark:brightness-0 dark:invert"
+            className="h-10 w-auto object-contain"
           />
         </div>
 
@@ -23,9 +22,8 @@ export function Header() {
           {t("header.title")}
         </h1>
 
-        {/* Right: Theme toggle + Language toggle */}
+        {/* Right: Language toggle */}
         <div className="flex items-center gap-2">
-          <ThemeToggle />
           <LanguageToggle />
         </div>
       </div>
