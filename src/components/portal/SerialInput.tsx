@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { ChevronDown, Search, Sparkles, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAllSerials } from "@/data/unitData";
@@ -14,20 +14,29 @@ interface SerialInputProps {
 export function SerialInput({ value, onChange, onSubmit, isLoading = false }: SerialInputProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const serials = getAllSerials();
   const { t } = useLanguage();
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside - use mousedown to catch before click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current && 
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [isDropdownOpen]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !isLoading) {
@@ -35,18 +44,20 @@ export function SerialInput({ value, onChange, onSubmit, isLoading = false }: Se
     }
   };
 
-  const handleSelectSerial = (serial: string) => {
+  const handleSelectSerial = useCallback((serial: string) => {
     onChange(serial);
     setIsDropdownOpen(false);
     // Use setTimeout to ensure state update before submit
     setTimeout(() => {
       onSubmit(serial);
     }, 0);
-  };
+  }, [onChange, onSubmit]);
 
-  const handleDropdownToggle = () => {
+  const handleDropdownToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!isLoading) {
-      setIsDropdownOpen(!isDropdownOpen);
+      setIsDropdownOpen(prev => !prev);
     }
   };
 
@@ -61,8 +72,9 @@ export function SerialInput({ value, onChange, onSubmit, isLoading = false }: Se
       
       <div className="flex flex-col gap-3 sm:flex-row">
         {/* Dropdown selector */}
-        <div className="relative flex-1" ref={dropdownRef}>
+        <div className="relative flex-1">
           <button
+            ref={buttonRef}
             type="button"
             onClick={handleDropdownToggle}
             disabled={isLoading}
@@ -75,12 +87,23 @@ export function SerialInput({ value, onChange, onSubmit, isLoading = false }: Se
           </button>
 
           {isDropdownOpen && (
-            <div className="absolute z-50 mt-2 w-full rounded-xl border-2 border-border bg-card shadow-xl animate-fade-in overflow-hidden">
+            <div 
+              ref={dropdownRef}
+              className="absolute z-[100] mt-2 w-full max-h-60 overflow-y-auto rounded-xl border-2 border-border bg-card shadow-xl animate-fade-in"
+            >
               {serials.map((serial, index) => (
                 <button
                   key={serial}
                   type="button"
-                  onClick={() => handleSelectSerial(serial)}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleSelectSerial(serial);
+                  }}
                   className={`flex w-full items-center px-4 py-3.5 text-left text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary ${
                     serial === value ? "bg-primary/5 text-primary" : "text-foreground"
                   }`}
