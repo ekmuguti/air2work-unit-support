@@ -110,7 +110,7 @@ const Index = () => {
               </div>
 
               {/* Serial Input */}
-              <div className="mb-8 rounded-xl border-2 border-border/50 bg-card/50 p-5 backdrop-blur-sm">
+              <div className="mb-8 rounded-xl border-2 border-border/50 bg-card/50 p-5 backdrop-blur-sm relative z-50">
                 <SerialInput
                   value={serialInput}
                   onChange={handleSerialChange}
