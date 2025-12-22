@@ -18,7 +18,7 @@ export type ResolvedUnit = {
 
 export const DEFAULT_UNIT: ResolvedUnit = {
   serial: "DEFAULT",
-  model: "E-Compressor 800L",
+  model: "E-Compressor",
 
   // manuals can be blank if you want them only after lookup
   operationsManualUrl: "",
@@ -252,7 +252,7 @@ export function resolveNorwayUnit(serial: string): ResolvedUnit | null {
 
   return {
     serial,
-    model: "E-Compressor 800L",
+    model: "E-Compressor",
     // Manuals
     operationsManualUrl: OPERATIONS_MANUAL_URL,
     serviceManualUrl: SERVICE_MANUAL_URL,
