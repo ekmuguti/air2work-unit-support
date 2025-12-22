@@ -104,7 +104,7 @@ const Index = () => {
                   {currentUnit ? (
                     <span className="text-gradient-hero">E-Compressor</span>
                   ) : (
-                    "E-Compressor 800L"
+                    "E-Compressor"
                   )}
                 </h2>
                 <p className="mt-2 text-muted-foreground">
