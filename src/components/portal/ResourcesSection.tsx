@@ -1,15 +1,17 @@
 import { BookOpen, FileText, AlertTriangle, Mail, Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { UnitData, buildIncidentEmailLink } from "@/data/unitData";
+import type { ResolvedUnit } from "@/data/unitData";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+
 interface ResourcesSectionProps {
-  unit: UnitData;
+  unit: ResolvedUnit;
 }
+
 
 export function ResourcesSection({ unit }: ResourcesSectionProps) {
   const { t } = useLanguage();
-  const emailLink = buildIncidentEmailLink(unit.serial);
+  const emailLink = unit.incidentEmailUrl;
 
   return (
     <section className="space-y-5 animate-slide-up" style={{ animationDelay: "0.1s" }}>

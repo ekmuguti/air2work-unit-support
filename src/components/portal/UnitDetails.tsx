@@ -1,9 +1,9 @@
-import { UnitData } from "@/data/unitData";
+import type { ResolvedUnit } from "@/data/unitData";
 import { Server, Hash, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface UnitDetailsProps {
-  unit: UnitData;
+  unit: ResolvedUnit;
 }
 
 export function UnitDetails({ unit }: UnitDetailsProps) {

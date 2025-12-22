@@ -9,14 +9,15 @@ import { TrainingVideosSection } from "@/components/portal/TrainingVideosSection
 import { BrandStrip } from "@/components/portal/BrandStrip";
 import { NotFoundState } from "@/components/portal/NotFoundState";
 import { EmptyState } from "@/components/portal/EmptyState";
-import { findUnitBySerial, normalizeSerial, UnitData } from "@/data/unitData";
+import { normalizeSerial, resolveNorwayUnit } from "@/data/unitData";
+import type {ResolvedUnit} from "@/data/unitData";
 import { Wrench } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [serialInput, setSerialInput] = useState("");
-  const [currentUnit, setCurrentUnit] = useState<UnitData | null>(null);
+  const [currentUnit, setCurrentUnit] = useState<ResolvedUnit | null>(null);
   const [searchedSerial, setSearchedSerial] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +48,7 @@ const Index = () => {
     await new Promise(resolve => setTimeout(resolve, 400));
 
     const normalized = normalizeSerial(searchSerial);
-    const unit = findUnitBySerial(normalized);
+    const unit = resolveNorwayUnit(normalized);
 
     setSearchedSerial(normalized);
     setCurrentUnit(unit || null);
@@ -99,7 +100,7 @@ const Index = () => {
                 </div>
                 <h2 className="text-3xl font-bold text-foreground md:text-4xl">
                   {currentUnit ? (
-                    <span className="text-gradient-hero">{currentUnit.model}</span>
+                    <span className="text-gradient-hero">E-Compressor</span>
                   ) : (
                     "E-Compressor 800L"
                   )}
@@ -159,7 +160,8 @@ const Index = () => {
           </div>
 
           {/* Training Videos - Always visible */}
-          <TrainingVideosSection />
+          {!isLoading && currentUnit && <TrainingVideosSection unit={currentUnit} />}
+
 
           {/* Brand Strip */}
           <BrandStrip />
