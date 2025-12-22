@@ -13,6 +13,8 @@ import { normalizeSerial, resolveNorwayUnit } from "@/data/unitData";
 import type {ResolvedUnit} from "@/data/unitData";
 import { Wrench } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { DEFAULT_UNIT } from "@/data/unitData";
+
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -160,7 +162,8 @@ const Index = () => {
           </div>
 
           {/* Training Videos - Always visible */}
-          {!isLoading && currentUnit && <TrainingVideosSection unit={currentUnit} />}
+          <TrainingVideosSection unit={currentUnit ?? DEFAULT_UNIT} />
+
 
 
           {/* Brand Strip */}

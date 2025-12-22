@@ -16,6 +16,25 @@ export type ResolvedUnit = {
   shutdownVideoUrl?: string;
 }
 
+export const DEFAULT_UNIT: ResolvedUnit = {
+  serial: "DEFAULT",
+  model: "E-Compressor 800L",
+
+  // manuals can be blank if you want them only after lookup
+  operationsManualUrl: "",
+  serviceManualUrl: "",
+
+  // optional
+  incidentFormUrl: "",
+  incidentEmailUrl: "",
+
+  // videos MUST exist
+  startUpVideoUrl: "https://youtu.be/Vn7Zdq4yWTA",
+  alarmVideoUrl: "https://youtu.be/fwDWhOeyHmg",
+  shutdownVideoUrl: "https://youtu.be/wYPIRiEjVtk",
+};
+
+
 // TODO: Add more units as needed
 // TODO: Replace all {{PLACEHOLDER}} values with real URLs
 const BASE = import.meta.env.BASE_URL;
