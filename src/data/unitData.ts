@@ -42,7 +42,7 @@ const BASE = import.meta.env.BASE_URL;
 
 export const OPERATIONS_MANUAL_URL = `${BASE}E-Compressor-Operational-Manual.pdf`;
 export const SERVICE_MANUAL_URL = `${BASE}english-user-manual-e-compressor.pdf`;
-export const INCIDENT_FORM_URL = "{{INCIDENT_FORM_URL}}"; // put your real form URL
+export const INCIDENT_FORM_URL = "https://forms.cloud.microsoft/e/iDD3f4XwkD"; // put your real form URL
 export const STARTUP_VIDEO_URL = "https://youtu.be/Vn7Zdq4yWTA";
 export const ALARM_VIDEO_URL = "https://youtu.be/fwDWhOeyHmg";
 export const SHUTDOWN_VIDEO_URL = "https://youtu.be/wYPIRiEjVtk";
@@ -200,7 +200,7 @@ export const NORWAY_SERIALS: string[] = [
 ];
 
 // TODO: Replace with real support email address
-export const SUPPORT_EMAIL = "aston.ladzinski@einnovation.com.au";
+export const SUPPORT_EMAIL = "sales@einnovation.no";
 
 /**
  * Normalizes a serial number by trimming whitespace and converting to uppercase
